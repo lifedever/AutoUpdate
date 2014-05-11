@@ -30,15 +30,17 @@ namespace AutoUpdate
             get { return appVersion; }
             set { appVersion = value; }
         }
-        private string appInfo; //  程序更新信息
+        private List<String> appInfo; //  程序更新信息
 
-        [XmlElement("info")]
-        public string AppInfo
+        [XmlElement("info", typeof(List<string>))]
+        public List<String> AppInfo
         {
             get { return appInfo; }
             set { appInfo = value; }
         }
 
+        
+                
         private int size;   //  更新大小
 
         [XmlElement("size")]

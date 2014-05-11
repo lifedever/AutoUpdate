@@ -14,24 +14,32 @@ namespace AutoUpdate
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string remote = "http://git.oschina.net/gefangshuai/BingApplication/raw/master/BingApplication/bin/setup/";
-        private Thread downloadThread;
+        private string remote;
         private Version obj;
-        public MainWindow()
+        
+
+        private Thread downloadThread;
+        
+        public MainWindow(string remote, Version obj)
         {
             InitializeComponent();
-            doAction();
+
+            try
+            {
+                this.remote = remote;
+                this.obj = obj;
+                doAction();
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.ToString(), "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void doAction()
         {
-            // 获取版本信息
-            string uri = "version.xml";
-            WebClient client = new WebClient();
-            string versionInfo = Encoding.UTF8.GetString(client.DownloadData(remote + uri));
-
-            // 将信息转换为对象 
-            obj = XmlHelper.XmlDeserailize(versionInfo, typeof(Version)) as Version;
+            
+           
 
             downloadThread = new Thread(download);
             downloadThread.Start();
@@ -84,16 +92,14 @@ namespace AutoUpdate
             }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-        }
 
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
             Process process = new Process();
             process.StartInfo.FileName = "setup.exe";
             process.Start();
-            Application.Current.Shutdown();
+            System.Environment.Exit(0);
         }
+
     }
 }

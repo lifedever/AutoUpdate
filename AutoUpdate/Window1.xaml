@@ -1,0 +1,29 @@
+﻿<Window x:Class="AutoUpdate.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="自动升级工具" MinHeight="150" MinWidth="350" ResizeMode="NoResize" Icon="update.ico" Closing="Window_Closing" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="5"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="60"></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="60"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Bottom">提示：</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" >服务器有可用更新，是否下载？</TextBlock>
+        <GroupBox Header="更新说明" Name="groupBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
+            
+        </GroupBox>
+        <Button Grid.Row="6" Grid.Column="1" Name="btnYes" Click="btnYes_Click">是</Button>
+        <Button Grid.Row="6" Grid.Column="3" Name="btnNo" Click="btnNo_Click">否</Button>
+    </Grid>
+</Window>
